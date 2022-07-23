@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:newsapp/provider/home/selected_index_provider.dart';
 import 'package:newsapp/provider/sign_up/obscure_text_provider.dart';
 import 'package:newsapp/provider/sign_up/sign_up_provider.dart';
 import 'package:newsapp/routes/routes.dart';
+import 'package:newsapp/services/firebase_service.dart';
 import 'package:provider/provider.dart';
 
 import 'provider/sign_up/check_box_provider.dart';
@@ -16,6 +18,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => SignUpProvider()),
         ChangeNotifierProvider(create: (_) => CheckBoxProvider()),
         ChangeNotifierProvider(create: (_) => ObscureTextProvider()),
+        ChangeNotifierProvider(create: (_) => SelectedIndexProvider()),
       ],
       child: const MyApp(),
     ),
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'News APP',
       onGenerateRoute: MyRoutes.instanse.onGenerate,
-      initialRoute: '/splash',
+      initialRoute: FireService.auth.currentUser == null ? '/splash' : '/cart',
     );
   }
 }

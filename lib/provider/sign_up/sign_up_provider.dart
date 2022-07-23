@@ -12,7 +12,7 @@ class SignUpProvider extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  String collection = "users";
 
   GlobalKey<FormState> fromKey = GlobalKey<FormState>();
 
@@ -24,11 +24,13 @@ class SignUpProvider extends ChangeNotifier {
         password: passwordController.text,
       );
 
-      await FireService.store.collection('news').doc(emailController.text).set(
+      await FireService.store
+          .collection(collection)
+          .doc(emailController.text)
+          .set(
         {
           "name": nameController.text,
           "email": emailController.text,
-          "phone": phoneController.text,
           "create_at": FieldValue.serverTimestamp(),
         },
       );
@@ -107,7 +109,7 @@ class SignUpProvider extends ChangeNotifier {
       );
       showMySnackbar(
         context: context,
-        content: "Password Reset Link Is Send To Email !",
+        content: "Password Reset Link Is Send To ${emailController.text}",
         color: Colors.green,
       );
     } on FirebaseAuthException catch (e) {
@@ -130,6 +132,7 @@ class SignUpProvider extends ChangeNotifier {
   Future signInWithGoogle(BuildContext context) async {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
       final credential = GoogleAuthProvider.credential(
@@ -138,6 +141,13 @@ class SignUpProvider extends ChangeNotifier {
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
 
+      await FireService.store.collection(collection).doc(googleUser!.email).set(
+        {
+          "name": googleUser.displayName,
+          "email": googleUser.email,
+          "create_at": FieldValue.serverTimestamp(),
+        },
+      );
       Navigator.pushNamedAndRemoveUntil(context, '/cart', (route) => false);
     } catch (e) {
       showMySnackbar(

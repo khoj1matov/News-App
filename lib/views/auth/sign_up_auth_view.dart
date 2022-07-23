@@ -73,12 +73,6 @@ class SignUpAuthView extends StatelessWidget {
                         context.watch<SignUpProvider>().passwordController,
                     suffixIcon: ObscureTextWidget.obscureText(context),
                   ),
-                  TextFieldTitleWidget.textFieldTitle(text: "Your Phone"),
-                  TextFieldWidget.textField(
-                    context: context,
-                    hintText: "(+998) XX XXX XX XX",
-                    controller: context.watch<SignUpProvider>().phoneController,
-                  ),
                   Row(
                     children: [
                       CheckboxSignUpWidget.checkbox(context),

@@ -18,7 +18,7 @@ class MyRoutes {
 
   Route<dynamic> onGenerate(RouteSettings s) {
     if (s.name == '/home') {
-      return MaterialPageRoute(builder: (_) => const HomeCartView());
+      return MaterialPageRoute(builder: (_) => HomeCartView());
     } else if (s.name == '/favorite') {
       return MaterialPageRoute(builder: (_) => const FavoriteCartView());
     } else if (s.name == '/profile') {
@@ -40,7 +40,7 @@ class MyRoutes {
     } else if (s.name == '/cart') {
       return MaterialPageRoute(builder: (_) => const CartView());
     } else {
-      return MaterialPageRoute(builder: (_) => const HomeCartView());
+      return MaterialPageRoute(builder: (_) => HomeCartView());
     }
   }
 }
