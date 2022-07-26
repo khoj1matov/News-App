@@ -50,7 +50,9 @@ class HomeSearchWidget {
                 icon: SvgPicture.asset(
                   "assets/icons/notification.svg",
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/notification');
+                },
               ),
             ),
           ),

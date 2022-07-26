@@ -1,8 +1,8 @@
 class ApiUrlConst {
   static String appleApi =
-      "https://newsapi.org/v2/everything?q=apple&from=2022-07-22&to=2022-07-22&sortBy=popularity&apiKey=cd076517121548baa661ddd8adafec09";
+      "https://newsapi.org/v2/everything?q=apple&from=2022-07-25&to=2022-07-25&sortBy=popularity&apiKey=cd076517121548baa661ddd8adafec09";
   static String teslaApi =
-      "https://newsapi.org/v2/everything?q=tesla&from=2022-06-23&sortBy=publishedAt&apiKey=cd076517121548baa661ddd8adafec09";
+      "https://newsapi.org/v2/everything?q=tesla&from=2022-06-26&sortBy=publishedAt&apiKey=cd076517121548baa661ddd8adafec09";
   static String businessApi =
       "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=cd076517121548baa661ddd8adafec09";
   static String techCrunchApi =

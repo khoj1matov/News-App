@@ -6,9 +6,11 @@ import 'package:newsapp/core/widgets/continue_button_widget.dart';
 import 'package:newsapp/core/widgets/sign_in/google_and_facebook_widget.dart';
 import 'package:newsapp/core/widgets/sign_in/or_widget.dart';
 import 'package:newsapp/core/widgets/sign_in/text_buttons_widget.dart';
+import 'package:newsapp/core/widgets/sing_up/obscure_text_widget.dart';
 import 'package:newsapp/core/widgets/sing_up/text_field_sign_up_widget.dart';
 import 'package:newsapp/core/widgets/sing_up/text_field_title_sign_up_widget.dart';
 import 'package:newsapp/core/widgets/toBackButton_widget.dart';
+import 'package:newsapp/provider/sign_up/obscure_text_provider.dart';
 import 'package:newsapp/provider/sign_up/sign_up_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +41,7 @@ class SignInAuthView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ToBackButton.toBackButton(context),
+                      ToBackButton.toBackButton(context, ColorConst.cFFFFFF),
                       Text(
                         'Sign In',
                         style: MyTextStyleComp.myTextStyle(
@@ -59,11 +61,13 @@ class SignInAuthView extends StatelessWidget {
                     controller: context.watch<SignUpProvider>().emailController,
                   ),
                   TextFieldTitleWidget.textFieldTitle(text: "Password"),
-                  TextFieldWidget.textField(
+                  TextFieldWidget.textFieldPassword(
                     context: context,
                     hintText: "Your Password",
+                    obscureText: context.watch<ObscureTextProvider>().isChecked,
                     controller:
                         context.watch<SignUpProvider>().passwordController,
+                    suffixIcon: ObscureTextWidget.obscureText(context),
                   ),
                   TextButtonsWidget.forgotPassword(
                     onPressed: () {
@@ -76,7 +80,7 @@ class SignInAuthView extends StatelessWidget {
                     },
                   ),
                   OrWidget.or(context),
-                  GoogleAndFacebookWidget.googleAndFacebook(context)
+                  GoogleAndFacebookWidget.googleAndFacebook(context),
                 ],
               ),
               ContinueButtonWidget.continueButton(

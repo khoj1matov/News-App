@@ -34,7 +34,7 @@ class ForgotPasswordAuthView extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ToBackButton.toBackButton(context),
+                  ToBackButton.toBackButton(context, ColorConst.cFFFFFF),
                   Text(
                     'Forgot Password',
                     style: MyTextStyleComp.myTextStyle(

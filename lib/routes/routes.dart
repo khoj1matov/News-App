@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/models/news_model.dart';
 import 'package:newsapp/views/auth/forgot_password_auth_view.dart';
 import 'package:newsapp/views/auth/sign_in_auth_view.dart';
 import 'package:newsapp/views/auth/sign_up_auth_view.dart';
@@ -16,15 +17,18 @@ class MyRoutes {
   static MyRoutes get instanse => MyRoutes._instanse;
   MyRoutes.init();
 
-  Route<dynamic> onGenerate(RouteSettings s) {
+  Route? onGenerate(RouteSettings s) {
+    var args = s.arguments;
     if (s.name == '/home') {
-      return MaterialPageRoute(builder: (_) => HomeCartView());
+      return MaterialPageRoute(builder: (_) => const HomeCartView());
     } else if (s.name == '/favorite') {
       return MaterialPageRoute(builder: (_) => const FavoriteCartView());
     } else if (s.name == '/profile') {
-      return MaterialPageRoute(builder: (_) => const ProfileCartView());
+      return MaterialPageRoute(builder: (_) => ProfileCartView());
     } else if (s.name == '/detail') {
-      return MaterialPageRoute(builder: (_) => const DetailView());
+      return MaterialPageRoute(
+        builder: (_) => DetailView(),
+      );
     } else if (s.name == '/notification') {
       return MaterialPageRoute(builder: (_) => const NotificationView());
     } else if (s.name == '/search') {
@@ -39,8 +43,6 @@ class MyRoutes {
       return MaterialPageRoute(builder: (_) => const ForgotPasswordAuthView());
     } else if (s.name == '/cart') {
       return MaterialPageRoute(builder: (_) => const CartView());
-    } else {
-      return MaterialPageRoute(builder: (_) => HomeCartView());
     }
   }
 }

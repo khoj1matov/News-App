@@ -19,6 +19,6 @@ class ColorConst {
   static Color c000000_1 = const Color(0xff000000).withOpacity(1);
   static Color cFF8086_1 = const Color(0xffFF8086).withOpacity(1);
   static Color cFF3A44_1 = const Color(0xffFF3A44).withOpacity(1);
-  static Color cF5F5F5_1 = const Color(0xffF5F5F5).withOpacity(1);
+  static Color cF5F5F5_05 = Color.fromARGB(255, 165, 165, 165).withOpacity(0.5);
   static Color c818181_04 = const Color(0xff818181).withOpacity(0.4);
 }

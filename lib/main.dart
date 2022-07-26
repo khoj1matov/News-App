@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:newsapp/provider/detail/favorite_provider.dart';
 import 'package:newsapp/provider/home/selected_index_provider.dart';
+import 'package:newsapp/provider/notification/expanded_provider.dart';
 import 'package:newsapp/provider/sign_up/obscure_text_provider.dart';
 import 'package:newsapp/provider/sign_up/sign_up_provider.dart';
 import 'package:newsapp/routes/routes.dart';
@@ -16,6 +18,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SignUpProvider()),
+        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+        ChangeNotifierProvider(create: (_) => ExpandedProvider()),
         ChangeNotifierProvider(create: (_) => CheckBoxProvider()),
         ChangeNotifierProvider(create: (_) => ObscureTextProvider()),
         ChangeNotifierProvider(create: (_) => SelectedIndexProvider()),
@@ -34,7 +38,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'News APP',
       onGenerateRoute: MyRoutes.instanse.onGenerate,
-      initialRoute: FireService.auth.currentUser == null ? '/splash' : '/cart',
+      initialRoute: FireService.auth.currentUser == null ? '/splash' : '/profile',
     );
   }
 }

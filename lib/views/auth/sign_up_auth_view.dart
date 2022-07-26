@@ -3,6 +3,8 @@ import 'package:newsapp/core/components/text_style_comp.dart';
 import 'package:newsapp/core/constants/colors_const.dart';
 import 'package:newsapp/core/extension/context_extensions.dart';
 import 'package:newsapp/core/widgets/continue_button_widget.dart';
+import 'package:newsapp/core/widgets/sign_in/google_and_facebook_widget.dart';
+import 'package:newsapp/core/widgets/sign_in/or_widget.dart';
 import 'package:newsapp/core/widgets/sing_up/checkbox_sign_up_widget.dart';
 import 'package:newsapp/core/widgets/sing_up/obscure_text_widget.dart';
 import 'package:newsapp/core/widgets/sing_up/text_field_sign_up_widget.dart';
@@ -39,7 +41,7 @@ class SignUpAuthView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ToBackButton.toBackButton(context),
+                      ToBackButton.toBackButton(context, ColorConst.cFFFFFF),
                       Text(
                         'Sign Up',
                         style: MyTextStyleComp.myTextStyle(
@@ -88,6 +90,8 @@ class SignUpAuthView extends StatelessWidget {
                       ),
                     ],
                   ),
+                  OrWidget.or(context),
+                  GoogleAndFacebookWidget.googleAndFacebook(context),
                 ],
               ),
               ContinueButtonWidget.continueButton(

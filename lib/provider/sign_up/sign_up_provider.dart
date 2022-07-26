@@ -180,6 +180,11 @@ class SignUpProvider extends ChangeNotifier {
 
   Future signOut(BuildContext context) async {
     await FireService.auth.signOut();
+    await showMySnackbar(
+      context: context,
+      content: "User Is Signed Out",
+      color: Colors.black,
+    );
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (_) => const SplashView()),
@@ -187,7 +192,7 @@ class SignUpProvider extends ChangeNotifier {
     );
   }
 
-  Future deleteAccount(context) async {
+  Future deleteAccount(BuildContext context) async {
     try {
       await FirebaseAuth.instance.currentUser!.delete();
       Navigator.pushAndRemoveUntil(
@@ -199,10 +204,22 @@ class SignUpProvider extends ChangeNotifier {
         showMySnackbar(
           context: context,
           content: "Delete your account",
-          color: ColorConst.cFF3A44,
+          color: Colors.black,
         );
       }
     }
+  }
+
+  Future updateName(BuildContext context) async {
+    await FirebaseAuth.instance.currentUser!.updateDisplayName(
+      nameController.text,
+    );
+  }
+
+  Future updateEmail(BuildContext context) async {
+    await FirebaseAuth.instance.currentUser!.updateEmail(
+      emailController.text,
+    );
   }
 
   showMySnackbar({
