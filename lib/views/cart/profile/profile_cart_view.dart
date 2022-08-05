@@ -18,47 +18,50 @@ class ProfileCartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [ColorConst.cFF8086_1, ColorConst.cFF3A44_1],
+      body: SingleChildScrollView(
+        child: Container(
+          height: context.h,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [ColorConst.cFF8086_1, ColorConst.cFF3A44_1],
+            ),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            ListTileWidget.listTile(context),
-            DividerWidget.divider(context),
-            const SizedBox(height: 15),
-            TextFieldTitleWidget.textFieldTitle(text: "Name"),
-            NameAndEmailWidget.nameAndEmail(
-              context,
-              text: FireService.auth.currentUser!.displayName ?? "Not Found",
-            ),
-            const SizedBox(height: 20),
-            TextFieldTitleWidget.textFieldTitle(text: "Email"),
-            NameAndEmailWidget.nameAndEmail(
-              context,
-              text: FireService.auth.currentUser!.email ?? "Not Found",
-            ),
-            TextButtonsWidget.forgotPassword(
-              onPressed: () {
-                Navigator.pushNamed(context, '/forgot_password');
-              },
-            ),
-            const SizedBox(height: 20),
-            ContinueButtonWidget.continueButton(
-              context: context,
-              title: "Delete Account",
-              function: () {
-                context.read<SignUpProvider>().deleteAccount(context);
-              },
-            ),
-            const SizedBox(height: 20),
-          ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 40),
+              ListTileWidget.listTile(context),
+              DividerWidget.divider(context),
+              const SizedBox(height: 15),
+              TextFieldTitleWidget.textFieldTitle(text: "Name"),
+              NameAndEmailWidget.nameAndEmail(
+                context,
+                text: FireService.auth.currentUser!.displayName ?? "Not Found",
+              ),
+              const SizedBox(height: 20),
+              TextFieldTitleWidget.textFieldTitle(text: "Email"),
+              NameAndEmailWidget.nameAndEmail(
+                context,
+                text: FireService.auth.currentUser!.email ?? "Not Found",
+              ),
+              TextButtonsWidget.forgotPassword(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/forgot_password');
+                },
+              ),
+              const SizedBox(height: 20),
+              ContinueButtonWidget.continueButton(
+                context: context,
+                title: "Delete Account",
+                function: () {
+                  context.read<FirebaseProvider>().deleteAccount(context);
+                },
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );

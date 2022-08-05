@@ -19,7 +19,7 @@ class GoogleAndFacebookWidget {
             ),
           ),
           onTap: () {
-            context.read<SignUpProvider>().signInWithGoogle(context);
+            context.read<FirebaseProvider>().signInWithGoogle(context);
           },
         ),
         InkWell(
@@ -32,7 +32,7 @@ class GoogleAndFacebookWidget {
             ),
           ),
           onTap: () {
-            context.read<SignUpProvider>().signInWithFacebook(context);
+            context.read<FirebaseProvider>().signInWithFacebook(context);
           },
         ),
         InkWell(

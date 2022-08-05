@@ -17,7 +17,7 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => SignUpProvider()),
+        ChangeNotifierProvider(create: (_) => FirebaseProvider()),
         ChangeNotifierProvider(create: (_) => FavoriteProvider()),
         ChangeNotifierProvider(create: (_) => ExpandedProvider()),
         ChangeNotifierProvider(create: (_) => CheckBoxProvider()),
@@ -38,7 +38,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'News APP',
       onGenerateRoute: MyRoutes.instanse.onGenerate,
-      initialRoute: FireService.auth.currentUser == null ? '/splash' : '/profile',
+      initialRoute:
+          FireService.auth.currentUser == null ? '/splash' : '/cart',
     );
   }
 }

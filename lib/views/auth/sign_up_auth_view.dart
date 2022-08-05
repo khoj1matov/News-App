@@ -58,13 +58,15 @@ class SignUpAuthView extends StatelessWidget {
                   TextFieldWidget.textField(
                     context: context,
                     hintText: "Your Name",
-                    controller: context.watch<SignUpProvider>().nameController,
+                    controller:
+                        context.watch<FirebaseProvider>().nameController,
                   ),
                   TextFieldTitleWidget.textFieldTitle(text: "Email"),
                   TextFieldWidget.textField(
                     context: context,
                     hintText: "Your Email",
-                    controller: context.watch<SignUpProvider>().emailController,
+                    controller:
+                        context.watch<FirebaseProvider>().emailController,
                   ),
                   TextFieldTitleWidget.textFieldTitle(text: "Password"),
                   TextFieldWidget.textFieldPassword(
@@ -72,7 +74,7 @@ class SignUpAuthView extends StatelessWidget {
                     hintText: "Your Password",
                     obscureText: context.watch<ObscureTextProvider>().isChecked,
                     controller:
-                        context.watch<SignUpProvider>().passwordController,
+                        context.watch<FirebaseProvider>().passwordController,
                     suffixIcon: ObscureTextWidget.obscureText(context),
                   ),
                   Row(
@@ -98,7 +100,7 @@ class SignUpAuthView extends StatelessWidget {
                 context: context,
                 title: "Sign Up",
                 function: () {
-                  context.read<SignUpProvider>().signUp(context);
+                  context.read<FirebaseProvider>().signUp(context);
                 },
               ),
             ],

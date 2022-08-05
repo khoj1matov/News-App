@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/core/components/text_style_comp.dart';
 import 'package:newsapp/core/constants/colors_const.dart';
@@ -7,6 +8,7 @@ import 'package:provider/provider.dart';
 
 class ListTileWidget {
   static ListTile listTile(BuildContext context) {
+    User currentUser = FireService.auth.currentUser!;  
     return ListTile(
       leading: CircleAvatar(
         radius: 27,
@@ -21,8 +23,7 @@ class ListTileWidget {
         ),
       ),
       subtitle: Text(
-        FireService.auth.currentUser!.displayName ??
-            context.watch<SignUpProvider>().nameController.text,
+        "${currentUser.displayName ?? currentUser.email}",
         style: MyTextStyleComp.myTextStyle(
           color: ColorConst.cFFFFFF,
           fontSize: 20,
@@ -34,7 +35,7 @@ class ListTileWidget {
         child: IconButton(
           icon: Icon(Icons.logout, color: ColorConst.cFF3A44),
           onPressed: () {
-            context.read<SignUpProvider>().signOut(context);
+            context.read<FirebaseProvider>().signOut(context);
           },
         ),
       ),

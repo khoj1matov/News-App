@@ -3,7 +3,6 @@ import 'package:newsapp/core/components/text_style_comp.dart';
 import 'package:newsapp/core/constants/colors_const.dart';
 import 'package:newsapp/core/extension/context_extensions.dart';
 import 'package:newsapp/core/widgets/continue_button_widget.dart';
-import 'package:newsapp/core/widgets/sign_in/text_buttons_widget.dart';
 import 'package:newsapp/core/widgets/sing_up/text_field_sign_up_widget.dart';
 import 'package:newsapp/core/widgets/sing_up/text_field_title_sign_up_widget.dart';
 import 'package:newsapp/core/widgets/toBackButton_widget.dart';
@@ -51,13 +50,13 @@ class ForgotPasswordAuthView extends StatelessWidget {
               TextFieldWidget.textField(
                 context: context,
                 hintText: "Your Email",
-                controller: context.watch<SignUpProvider>().emailController,
+                controller: context.watch<FirebaseProvider>().emailController,
               ),
               ContinueButtonWidget.continueButton(
                 context: context,
                 title: "Reset Password",
                 function: () {
-                  context.read<SignUpProvider>().forgotPassword(context);
+                  context.read<FirebaseProvider>().forgotPassword(context);
                 },
               ),
             ],

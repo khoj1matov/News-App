@@ -15,7 +15,12 @@ class NameAndEmailWidget {
         border: Border.all(width: 2, color: ColorConst.cFFFFFF),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Text(text, style: MyTextStyleComp.signUpTextFieldTitle),
+      child: Text(
+        text,
+        style: MyTextStyleComp.signUpTextFieldTitle,
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 }

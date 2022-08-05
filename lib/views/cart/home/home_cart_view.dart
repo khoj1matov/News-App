@@ -17,13 +17,7 @@ class HomeCartView extends StatefulWidget {
 }
 
 class _HomeCartViewState extends State<HomeCartView> {
-  final List future = [
-    NewsService.getApple(),
-    NewsService.getTesla(),
-    NewsService.getBusiness(),
-    NewsService.getTechCrunch(),
-    NewsService.getWallStreet(),
-  ];
+  List future = [];
 
   final List<String> categories = [
     'Apple',
@@ -32,6 +26,18 @@ class _HomeCartViewState extends State<HomeCartView> {
     'TechCrunch',
     'Wall Street Journal',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    future = [
+      NewsService.getApple(),
+      NewsService.getTesla(),
+      NewsService.getBusiness(),
+      NewsService.getTechCrunch(),
+      NewsService.getWallStreet(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {

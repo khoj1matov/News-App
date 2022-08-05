@@ -58,7 +58,8 @@ class SignInAuthView extends StatelessWidget {
                   TextFieldWidget.textField(
                     context: context,
                     hintText: "Your Email",
-                    controller: context.watch<SignUpProvider>().emailController,
+                    controller:
+                        context.watch<FirebaseProvider>().emailController,
                   ),
                   TextFieldTitleWidget.textFieldTitle(text: "Password"),
                   TextFieldWidget.textFieldPassword(
@@ -66,7 +67,7 @@ class SignInAuthView extends StatelessWidget {
                     hintText: "Your Password",
                     obscureText: context.watch<ObscureTextProvider>().isChecked,
                     controller:
-                        context.watch<SignUpProvider>().passwordController,
+                        context.watch<FirebaseProvider>().passwordController,
                     suffixIcon: ObscureTextWidget.obscureText(context),
                   ),
                   TextButtonsWidget.forgotPassword(
@@ -88,7 +89,7 @@ class SignInAuthView extends StatelessWidget {
                 title: "Sign In",
                 function: () {
                   context
-                      .read<SignUpProvider>()
+                      .read<FirebaseProvider>()
                       .signInWithEmailPassword(context);
                 },
               ),

@@ -27,7 +27,6 @@ class _FavoriteCartViewState extends State<FavoriteCartView> {
           child: ListView.builder(
             itemCount: data.length,
             itemBuilder: (_, index) {
-              // List<Article> data = getData[index].articles!;
               return InkWell(
                 child: Container(
                   margin: const EdgeInsets.symmetric(

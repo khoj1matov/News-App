@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -8,7 +9,7 @@ import 'package:newsapp/core/constants/colors_const.dart';
 import 'package:newsapp/services/firebase_service.dart';
 import 'package:newsapp/views/splash/splash_view.dart';
 
-class SignUpProvider extends ChangeNotifier {
+class FirebaseProvider extends ChangeNotifier {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -140,8 +141,10 @@ class SignUpProvider extends ChangeNotifier {
         idToken: googleAuth?.idToken,
       );
       await FirebaseAuth.instance.signInWithCredential(credential);
+      emailController.text = googleUser!.email;
+      nameController.text = googleUser.displayName!;
 
-      await FireService.store.collection(collection).doc(googleUser!.email).set(
+      await FireService.store.collection(collection).doc(googleUser.email).set(
         {
           "name": googleUser.displayName,
           "email": googleUser.email,
@@ -195,15 +198,20 @@ class SignUpProvider extends ChangeNotifier {
   Future deleteAccount(BuildContext context) async {
     try {
       await FirebaseAuth.instance.currentUser!.delete();
+      await FireService.store
+          .collection(collection)
+          .doc(emailController.text)
+          .delete();
       Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (_) => const SplashView()),
-          (route) => false);
+        context,
+        MaterialPageRoute(builder: (_) => const SplashView()),
+        (route) => false,
+      );
     } on FirebaseAuthException catch (e) {
       if (e.code == "requires-recent-login") {
         showMySnackbar(
           context: context,
-          content: "Delete your account",
+          content: "Error",
           color: Colors.black,
         );
       }

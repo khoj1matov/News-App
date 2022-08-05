@@ -32,9 +32,9 @@ class _CartViewState extends State<CartView> with TickerProviderStateMixin {
         children: [
           TabBarView(
             controller: _tabController,
-            children: [
-              const HomeCartView(),
-              const FavoriteCartView(),
+            children: const [
+              HomeCartView(),
+              FavoriteCartView(),
               ProfileCartView(),
             ],
           ),
